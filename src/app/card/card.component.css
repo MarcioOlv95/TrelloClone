@@ -1,0 +1,21 @@
+p {
+	background: darkgoldenrod;
+	margin: 0 0 6px 0;
+	padding: 6px 6px 10px 8px;
+	border: 1px solid green;
+    font-style: italic;
+    color: #fff;
+}
+
+.iconTrash {
+	float: right;
+}
+
+input{
+	width: 300px;
+	padding: 10px;
+	border: 1px solid violet;
+	outline: 0;
+	background: #fff;
+	box-shadow:none;
+}

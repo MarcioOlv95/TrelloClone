@@ -1,0 +1,5 @@
+<p *ngIf="!displayEditCard" class="card" draggable="true" (dragstart)="dragStart($event)" id="{{card.id}}" (click)="editDescription()">
+    <span>{{card.description}}</span>
+    <i class="material-icons iconTrash" (click)="deleteCard(card.id)">delete</i>
+</p>
+<input type="text" (keyup.enter)="editDescription();" *ngIf="displayEditCard" id="editDescCard" [(ngModel)]="card.description" autofocus>
