@@ -1,0 +1,36 @@
+<div class="backgroundAutenticacao">
+  <div class="boxAutenticacao">
+  
+      <span class="textAccount">Login</span>
+
+      <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate class="topForm">
+        <div class="form-group">
+          
+          <input type="text" class="inputAutenticacao" placeholder="Email" name="email" [(ngModel)]="form.email" required #email="ngModel" />
+          <div class="alert-danger" role="alert" *ngIf="f.submitted && email.invalid" >
+            Email é obrigatório!
+          </div>
+
+          <input type="password" class="inputAutenticacao" placeholder="Senha" name="senha" [(ngModel)]="form.senha" required
+            minlength="6" #senha="ngModel" />
+          <div class="alert-danger" role="alert" *ngIf="f.submitted && senha.invalid">
+            <div *ngIf="senha.errors.required">
+              Senha é obrigatório!
+            </div>
+            <div *ngIf="senha.errors.minlength">
+              A senha deve conter no mínimo 6 caracteres
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button class="btnAutenticacao">
+            Login
+          </button>
+        </div>
+      </form>
+
+      <span class="novaConta">Novo usuário? <a href="/register">Crie uma conta</a></span>
+  
+  </div>
+</div>

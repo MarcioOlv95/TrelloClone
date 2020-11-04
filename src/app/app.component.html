@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-* {box-sizing: border-box;}
+/* * {box-sizing: border-box;}
 
 body { 
   margin: 0;
@@ -56,20 +56,53 @@ body {
   .header-right {
     float: none;
   }
-}
+} */
 </style>
 </head>
 <body>
 
-<div class="header">
-  <a href="#default" class="logo">Trello clone</a>
-  <div class="header-right">
-    <a class="active" href="https://codesource.io/">CodeSource.io</a>
-    <a href="https://www.dunebook.com/">Dunebook.com</a>
-    <a href="#about">Project by Deven</a>
+  <div id="app">
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+      <a href="#" class="navbar-brand">Trello Clone</a>
+      <ul class="navbar-nav mr-auto" routerLinkActive="active">
+        <li class="nav-item">
+          <a href="/Board" class="nav-link" routerLink="board">Board </a>
+        </li>
+        <li class="nav-item" *ngIf="showAdminBoard">
+          <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+        </li>
+        <li class="nav-item" *ngIf="showModeratorBoard">
+          <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
+        </li>
+        <li class="nav-item">
+          <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
+        </li>
+      </ul>
+  
+      <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+        <li class="nav-item">
+          <a href="/register" class="nav-link" routerLink="register">Novo usuário</a>
+        </li>
+        <li class="nav-item">
+          <a href="/login" class="nav-link" routerLink="login">Login</a>
+        </li>
+      </ul>
+  
+      <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+        <li class="nav-item">
+          <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+        </li>
+        <li class="nav-item">
+          <a href class="nav-link" (click)="logout()">Sair</a>
+        </li>
+      </ul>
+    </nav>
+  
+    <div>
+      <ngx-alerts></ngx-alerts>
+      <router-outlet></router-outlet>
+    </div>
   </div>
-</div>
 
-<app-board></app-board>
 </body>
 </html>

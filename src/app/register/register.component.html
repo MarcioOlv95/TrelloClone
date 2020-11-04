@@ -1,0 +1,44 @@
+<div class="backgroundAutenticacao">
+    <div class="boxAutenticacao">
+      
+      <span class="textAccount">Registrar usuário</span>
+
+      <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate class="topForm">
+        <div class="form-group">
+          
+          <input type="email" placeholder="Email" class="inputAutenticacao" name="email" [(ngModel)]="form.email" required email #email="ngModel" />
+          <div class="alert-danger" *ngIf="f.submitted && email.invalid">
+            <div *ngIf="email.errors.required">Email é obrigatório</div>
+            <div *ngIf="email.errors.email">
+              Email em formato inválido
+            </div>
+          </div>
+
+          <input type="password" placeholder="Senha" class="inputAutenticacao" name="senha" [(ngModel)]="form.senha" required minlength="6" #senha="ngModel" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+          <div class="alert-danger" *ngIf="f.submitted && senha.invalid">
+            <div *ngIf="senha.errors.required">Senha é obrigatório</div>
+            <div *ngIf="senha.errors.minlength">
+              Senha deve conter no mínimo 6 caracteres
+            </div>
+          </div>
+
+          <input type="password" placeholder="Confirme a senha" class="inputAutenticacao" name="senhaconfirmacao" [(ngModel)]="form.senhaconfirmacao" required minlength="6" #senhaconfirmacao="ngModel" pattern="{{ senha.value }}" />
+          <div class="alert-danger" *ngIf="f.submitted && senhaconfirmacao.invalid">
+            <div *ngIf="senhaconfirmacao.errors.required">Confirmação da senha é obrigatório</div>
+            <div *ngIf="senhaconfirmacao.errors.minlength">
+              Senha deve conter no mínimo 6 caracteres
+            </div>
+            <div *ngIf="senhaconfirmacao.errors.pattern"> 
+              As senhas não conferem
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button class="btnAutenticacao">Registrar</button>
+        </div>
+  
+      </form>
+
+    </div>
+  </div>
